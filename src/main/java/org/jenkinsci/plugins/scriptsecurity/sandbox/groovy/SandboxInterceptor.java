@@ -48,6 +48,7 @@ import org.codehaus.groovy.runtime.metaclass.ClosureMetaMethod;
 import org.codehaus.groovy.tools.DgmConverter;
 import org.jenkinsci.plugins.scriptsecurity.sandbox.RejectedAccessException;
 import org.jenkinsci.plugins.scriptsecurity.sandbox.Whitelist;
+import org.jenkinsci.plugins.scriptsecurity.sandbox.whitelists.BlanketWhitelist;
 import org.jenkinsci.plugins.scriptsecurity.sandbox.whitelists.EnumeratingWhitelist;
 import org.jenkinsci.plugins.scriptsecurity.sandbox.whitelists.StaticWhitelist;
 import org.kohsuke.groovy.sandbox.GroovyInterceptor;
@@ -60,7 +61,7 @@ final class SandboxInterceptor extends GroovyInterceptor {
     private final Whitelist whitelist;
     
     SandboxInterceptor(Whitelist whitelist) {
-        this.whitelist = whitelist;
+        this.whitelist = new BlanketWhitelist();
     }
 
     /** should be synchronized with {@link DgmConverter} */
